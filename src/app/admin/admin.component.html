@@ -1,0 +1,114 @@
+<div class="menu-btn">
+  <button mat-button color="primary" *ngIf="admin" (click)="openDialog()">Add Job</button>
+  <button mat-button color="primary" *ngIf="admin" (click)="downloadFile(dataSource.filteredData)">CSV Download</button>
+  <button mat-button color="primary" *ngIf="admin" [disabled]="multiDeleteBtn"
+    (click)="multiDeleteFunc()">Multi-Delete</button>
+  <button mat-button color="primary" (click)="logout()">Logout</button>
+
+</div>
+
+
+
+<div class="container w-70" *ngIf="userData.role =='admin' ">
+
+  <mat-table #table [dataSource]="dataSource">
+
+
+    <ng-container matColumnDef="jobtitle">
+      <mat-header-cell *matHeaderCellDef> Job Title </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.jobtitle}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="company">
+      <mat-header-cell *matHeaderCellDef> Company </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.company}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef> Job Description </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button matTooltip="Edit this data" (click)="editJob(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+      <ng-container>
+
+        <mat-cell *matCellDef="let element">
+          <button mat-icon-button matTooltip="Remove this data" (click)="deleteJob(element.ID)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+    </ng-container>
+
+
+
+    <ng-container matColumnDef="checked">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <mat-checkbox [(ngModel)]="element.checked" (change)="checkedData($event, element)"></mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
+
+</div>
+
+
+<div class="container w-70" *ngIf="userData.role =='user'">
+
+  <mat-table #table [dataSource]="dataSource">
+
+
+    <ng-container matColumnDef="jobtitle">
+      <mat-header-cell *matHeaderCellDef> Job Title </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.jobtitle}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="company">
+      <mat-header-cell *matHeaderCellDef> Company </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.company}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef> Job Description </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+    </ng-container>
+
+
+
+    <ng-container matColumnDef="view">
+      <mat-header-cell *matHeaderCellDef> View </mat-header-cell>
+      <ng-container>
+
+        <mat-cell *matCellDef="let element">
+          <button mat-icon-button matTooltip="Show this data" (click)="viewJob(element)">
+            <mat-icon>
+
+              <i class="fa fa-eye" aria-hidden="true"></i>
+
+            </mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns2;"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
+</div>

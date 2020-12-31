@@ -1,0 +1,45 @@
+<div style="float: right;">
+  <button mat-icon-button class="close-button" [mat-dialog-close]="true">
+    <mat-icon class="close-icon" color="warn">close</mat-icon>
+  </button>
+</div>
+<div>
+  <h5 *ngIf="userData.role =='admin'">{{ addJob == true ? 'Add Job':'Edit Job'}}</h5>
+  <h5 *ngIf="userData.role =='user'">Job Detail</h5>
+
+</div>
+
+
+
+<div *ngIf="!view">
+  <form [formGroup]="AddJobForm" (ngSubmit)="submit()">
+    <div>
+      <mat-form-field class="input">
+        <input matInput formControlName="jobtitle" placeholder="Job Title">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="input">
+        <input matInput formControlName="company" placeholder="Company">
+      </mat-form-field>
+
+    </div>
+    <div>
+      <mat-form-field class="input">
+        <input matInput formControlName="description" placeholder="Job Description">
+      </mat-form-field>
+    </div>
+    <button mat-button color="primary">Submit</button>
+
+  </form>
+</div>
+
+<div *ngIf="view" class="detailpage">
+
+  <label>Job Title: {{viewData.jobtitle}}</label><br>
+
+  <label>Company: {{viewData.company}}</label><br>
+  <label>Description: {{viewData.description}}</label>
+
+
+</div>

@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import 'https://fonts.googleapis.com/icon?family=Material+Icons'; */
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import '../node_modules/font-awesome/css/font-awesome.min.css';
+@import '~ngx-toastr/toastr.css';
+
+body {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: #e9ecef;
+    font-size: 1rem;
+    line-height: 1.4;
+    font-weight: 500;
+    color: #000;
+}
+
+.loginform{
+    margin-top: 115px;
+    width: 25%;
+}
+.input{
+  width: 100%;
+}
+.btn{
+  text-align: right;
+}
+.menu-btn{
+    display: flex;
+    flex-direction: row;
+    place-content: flex-end;
+    padding: 2rem 8rem;
+}
+.detailpage{
+  padding: 0px;
+  margin-top: 35px;
+}
